@@ -9,7 +9,7 @@ public abstract class AbstractTrader implements Trader {
 	private final String name;
 	private Double cash;
 	private final Map<Stock,Integer> inventory;
-	private Map<StockExchange, Map<Stock, List<TickEvent<Trade>>>> storedTradeHistory;
+	private Map<StockExchangeProxy, Map<Stock, List<TickEvent<Trade>>>> storedTradeHistory;
 	
 	public AbstractTrader(String name, Double cash, Map<Stock, Integer> inventory) {
 		this.name = name;
@@ -63,7 +63,7 @@ public abstract class AbstractTrader implements Trader {
 	}
 
 	@Override
-	public void notify(StockExchange stockExchange, Stock stock, List<TickEvent<Trade>> tradeHistory) {
+	public void notify(StockExchangeProxy stockExchange, Stock stock, List<TickEvent<Trade>> tradeHistory) {
 		if (storedTradeHistory.containsKey(stockExchange)) {
 			storedTradeHistory.get(stockExchange).put(stock, tradeHistory);
 		}
@@ -75,7 +75,7 @@ public abstract class AbstractTrader implements Trader {
 	}
 
 	@Override
-	public List<TickEvent<Trade>> getStoredTradeHistory(StockExchange stockExchange, Stock stock) {
+	public List<TickEvent<Trade>> getStoredTradeHistory(StockExchangeProxy stockExchange, Stock stock) {
 		if (storedTradeHistory.containsKey(stockExchange)) {
 			if (storedTradeHistory.get(stockExchange).containsKey(stock)) {
 				return storedTradeHistory.get(stockExchange).get(stock);

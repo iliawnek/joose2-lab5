@@ -4,10 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import uk.ac.glasgow.jagora.Stock;
-import uk.ac.glasgow.jagora.StockExchange;
-import uk.ac.glasgow.jagora.TickEvent;
-import uk.ac.glasgow.jagora.Trade;
+import uk.ac.glasgow.jagora.*;
 
 /**
  * Implements the behaviour of a passive default trader who never makes bids or
@@ -33,7 +30,7 @@ public class DefaultTrader extends AbstractTrader {
 	}
 
 	@Override
-	public void speak(StockExchange stockExchange) {
+	public void speak(StockExchangeProxy stockExchange) {
 		//Does nothing.
 	}
 }

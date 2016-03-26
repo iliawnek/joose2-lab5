@@ -1,0 +1,17 @@
+Explanation:
+
+Design pattern 3 is the proxy design pattern.
+A proxy/wrapper class wraps around the stock exchange.
+The proxy class only allows certain methods to be called on the stock exchange.
+Traders interact with the stock exchange via the proxy, instead of directly.
+This ensures that traders can still talk to the stock exchange,
+but won't be able to call other methods on the stock exchange.
+
+Change list:
+- Created a proxy interface for stock exchange which only implements methods related to orders.
+- Created implementation of interface called DefaultStockExchangeProxy.
+    - Contains a private StockExchange field.
+    - All implemented methods simply call the stored StockExchange.
+- Trader, AbstractTrader, DefaultTrader, and RandomTrader
+  all had to be modified to use StockExchangeProxy as a key instead of StockExchange.
+    - Same with their corresponding tests.

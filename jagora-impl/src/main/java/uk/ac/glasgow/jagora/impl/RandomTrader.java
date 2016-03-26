@@ -38,7 +38,7 @@ public class RandomTrader extends AbstractTrader {
 	}
 
 	@Override
-	public void speak(StockExchange stockExchange) {
+	public void speak(StockExchangeProxy stockExchange) {
 
 		Integer quantity = random.nextInt(maxQuantity);
 		if (random.nextBoolean()){

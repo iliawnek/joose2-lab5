@@ -67,7 +67,7 @@ public interface Trader {
 	 * 
 	 * @param stockExchange
 	 */
-	public void speak(StockExchange stockExchange);
+	public void speak(StockExchangeProxy stockExchange);
 	
 	/**
 	 * @return the set of stock types that this Trader has on inventory.
