@@ -22,6 +22,10 @@ public class DefaultTrader extends AbstractTrader {
 		super(name, cash, createInventory(stock, quantity));
 	}
 
+	public DefaultTrader(String name, Double cash, Map<Stock, Integer> inventory) {
+		super(name, cash, inventory);
+	}
+
 	private static Map<Stock, Integer> createInventory(Stock stock, int quantity) {
 		Map<Stock,Integer> inventory = new HashMap<Stock,Integer>();
 		inventory.put(stock, quantity);

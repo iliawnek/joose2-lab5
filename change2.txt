@@ -1,0 +1,16 @@
+Explanation:
+
+Design pattern 2 is the builder design pattern.
+A separate builder class is used to set up a new trader using setter methods.
+Once the trader is ready to be constructed, a build() method is called, which returns the built trader.
+The builder class can then implement a method that is able to give the trader a wider range of stocks.
+
+Change list:
+- Created a new abstract class AbstractTraderBuilder.
+    - AbstractTraderBuilder has name, cash, and inventory fields as well as corresponding setters.
+    - Multiple stocks and quantities can be set at once using the addStocks() method.
+    - AbstractTraderBuilder has the abstract method build() which should return the constructed AbstractTrader.
+- Created a concrete class DefaultTraderBuilder which inherits from AbstractTraderBuilder.
+    - The build() abstract method is implemented by returning a constructed DefaultTrader using the builder's fields.
+- Created a concrete class RandomTraderBuilder which also inherits from AbstractTraderBuilder.
+    - This is similar to DefaultTraderBuilder, but contains many more fields and setters related to RandomTrader.
