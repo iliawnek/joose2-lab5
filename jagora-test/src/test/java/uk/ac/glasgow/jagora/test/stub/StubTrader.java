@@ -2,23 +2,17 @@ package uk.ac.glasgow.jagora.test.stub;
 
 import static uk.ac.glasgow.jagora.test.stub.StubStock.lemons;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-import uk.ac.glasgow.jagora.Stock;
-import uk.ac.glasgow.jagora.StockExchange;
-import uk.ac.glasgow.jagora.TradeException;
-import uk.ac.glasgow.jagora.Trader;
+import uk.ac.glasgow.jagora.*;
 
 public class StubTrader implements Trader {
 	
 	private Double cash;
 	private String name;
 	private Map<Stock,Integer> inventory;
-	
-	public static final Trader seller = new 
+
+	public static final Trader seller = new
 		StubTrader("seller", 0.0,createSellerInventory());
 		
 	public static final Trader buyer = new
@@ -69,7 +63,17 @@ public class StubTrader implements Trader {
 	public Set<Stock> getTradingStocks() {
 		return Collections.singleton(lemons);
 	}
-	
+
+	@Override
+	public void notify(StockExchange stockExchange, Stock stock, List<TickEvent<Trade>> tradeHistory) {
+
+	}
+
+	@Override
+	public List<TickEvent<Trade>> getStoredTradeHistory(StockExchange stockExchange, Stock stock) {
+		return stockExchange.getTradeHistory(stock);
+	}
+
 	private static Map<Stock, Integer> createSellerInventory() {
 		Map<Stock,Integer> inventory = new HashMap<Stock,Integer>();
 		inventory.put(lemons, 10);

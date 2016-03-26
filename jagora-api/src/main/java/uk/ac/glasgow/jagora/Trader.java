@@ -1,5 +1,6 @@
 package uk.ac.glasgow.jagora;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -72,4 +73,8 @@ public interface Trader {
 	 * @return the set of stock types that this Trader has on inventory.
 	 */
 	public Set<Stock> getTradingStocks();
+
+	public void notify(StockExchange stockExchange, Stock stock, List<TickEvent<Trade>> tradeHistory);
+
+	public List<TickEvent<Trade>> getStoredTradeHistory(StockExchange stockExchange, Stock stock);
 }

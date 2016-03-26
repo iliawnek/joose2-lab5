@@ -22,6 +22,7 @@ public class RandomTraderTest  extends TraderTest{
 		this.quantity = 100;
 		Random random = new Random (1);
 		this.trader = new RandomTrader(name, cash, stock, quantity, 10, 2.0, random);
+		this.stockExchange = new StubStockExchange();
 	}
 	
 	@Test

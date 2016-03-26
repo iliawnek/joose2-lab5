@@ -3,14 +3,13 @@ package uk.ac.glasgow.jagora.test;
 import static org.junit.Assert.assertEquals;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.Ignore;
 import org.junit.Test;
 
-import uk.ac.glasgow.jagora.Stock;
-import uk.ac.glasgow.jagora.TradeException;
-import uk.ac.glasgow.jagora.Trader;
+import uk.ac.glasgow.jagora.*;
 
 /**
  * Defines tests for the common behaviour of implementations of the Trader
@@ -29,6 +28,7 @@ public abstract class TraderTest {
 	protected String name;
 	
 	protected Trader trader;
+	protected StockExchange stockExchange;
 
 	@Test
 	public void testGetName (){
@@ -83,6 +83,12 @@ public abstract class TraderTest {
 	@Test(expected=TradeException.class)
 	public void testBadSellStock() throws Exception {
 		trader.sellStock(stock, quantity+1, 1.0);
+	}
+
+	@Test
+	public void testNotify() {
+		trader.notify(stockExchange, stock, stockExchange.getTradeHistory(stock));
+        assertEquals(stockExchange.getTradeHistory(stock), trader.getStoredTradeHistory(stockExchange, stock));
 	}
 
 }

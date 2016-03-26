@@ -1,24 +1,21 @@
 package uk.ac.glasgow.jagora.impl;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-import uk.ac.glasgow.jagora.Stock;
-import uk.ac.glasgow.jagora.TradeException;
-import uk.ac.glasgow.jagora.Trader;
+import uk.ac.glasgow.jagora.*;
 
 public abstract class AbstractTrader implements Trader {
 
 	private final String name;
 	private Double cash;
 	private final Map<Stock,Integer> inventory;
+	private Map<StockExchange, Map<Stock, List<TickEvent<Trade>>>> storedTradeHistory;
 	
 	public AbstractTrader(String name, Double cash, Map<Stock, Integer> inventory) {
 		this.name = name;
 		this.cash = cash;
 		this.inventory = new HashMap<Stock,Integer>(inventory);
+		storedTradeHistory = new HashMap<>();
 	}
 
 	@Override
@@ -63,6 +60,29 @@ public abstract class AbstractTrader implements Trader {
 	@Override
 	public Integer getInventoryHolding(Stock stock) {
 		return inventory.getOrDefault(stock, 0);
+	}
+
+	@Override
+	public void notify(StockExchange stockExchange, Stock stock, List<TickEvent<Trade>> tradeHistory) {
+		if (storedTradeHistory.containsKey(stockExchange)) {
+			storedTradeHistory.get(stockExchange).put(stock, tradeHistory);
+		}
+		else {
+			HashMap<Stock, List<TickEvent<Trade>>> trades = new HashMap<>();
+			trades.put(stock, tradeHistory);
+			storedTradeHistory.put(stockExchange, trades);
+		}
+	}
+
+	@Override
+	public List<TickEvent<Trade>> getStoredTradeHistory(StockExchange stockExchange, Stock stock) {
+		if (storedTradeHistory.containsKey(stockExchange)) {
+			if (storedTradeHistory.get(stockExchange).containsKey(stock)) {
+				return storedTradeHistory.get(stockExchange).get(stock);
+			}
+			else return new ArrayList<>();
+		}
+		else return new ArrayList<>();
 	}
 	
 	@Override 

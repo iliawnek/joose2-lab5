@@ -1,0 +1,2 @@
+- Modified Trader and StockExchange interfaces to include appropriate observer design pattern methods.
+- Implemented test cases to test the new interface methods.

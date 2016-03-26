@@ -64,4 +64,13 @@ public interface StockExchange {
 	 *         specified stock.
 	 */
 	public Double getBestBid(Stock stock);
+
+    public List<Trader> getRegisteredTraders();
+
+	public void registerTrader(Trader trader);
+
+	public void removeTrader(Trader trader);
+
+	public void notifyTraders();
+
 }

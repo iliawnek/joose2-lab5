@@ -3,6 +3,7 @@ package uk.ac.glasgow.jagora.test;
 import static org.junit.Assert.*;
 import static uk.ac.glasgow.jagora.test.stub.StubStock.lemons;
 import static uk.ac.glasgow.jagora.test.stub.StubTrade.expectedPrices;
+import static uk.ac.glasgow.jagora.test.stub.StubTrader.buyer;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,7 +30,6 @@ public abstract class StockExchangeTest {
 	
 	protected List<BuyOrder> buyOrders;
 	protected List<SellOrder> sellOrders;
-
 
 	@Test
 	public void testDoClearing() {
@@ -109,7 +109,29 @@ public abstract class StockExchangeTest {
 			assertEquals ("", expectedPrices[i], actualPrice);
 		}	
 	}
-	
+
+	@Test
+	public void testRegisterTrader() throws Exception {
+		stockExchange.registerTrader(buyer);
+		assertTrue(stockExchange.getRegisteredTraders().contains(buyer));
+	}
+
+	@Test
+	public void testRemoveTrader() throws Exception {
+		stockExchange.registerTrader(buyer);
+		assertTrue(stockExchange.getRegisteredTraders().contains(buyer));
+		stockExchange.removeTrader(buyer);
+		assertTrue(stockExchange.getRegisteredTraders().isEmpty());
+	}
+
+	@Test
+	public void testNotifyTraders() throws Exception {
+		placeStandardOrdersAndClear();
+		stockExchange.registerTrader(buyer);
+		stockExchange.notifyTraders();
+		assertEquals(buyer.getStoredTradeHistory(stockExchange, lemons), stockExchange.getTradeHistory(lemons));
+	}
+
 	private void placeStandardOrdersAndClear() {
 		placeSellOrders (sellOrders);
 		placeBuyOrders (buyOrders);

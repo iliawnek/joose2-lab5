@@ -3,18 +3,13 @@ package uk.ac.glasgow.jagora.test.stub;
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.ac.glasgow.jagora.BuyOrder;
-import uk.ac.glasgow.jagora.SellOrder;
-import uk.ac.glasgow.jagora.Stock;
-import uk.ac.glasgow.jagora.StockExchange;
-import uk.ac.glasgow.jagora.TickEvent;
-import uk.ac.glasgow.jagora.Trade;
+import uk.ac.glasgow.jagora.*;
 
 public class StubStockExchange implements StockExchange {
 
 	public final List<BuyOrder> buyOrders = new ArrayList<BuyOrder>();
 	public final List<SellOrder> sellOrders = new ArrayList<SellOrder>();
-	
+
 	@Override
 	public void doClearing() {
 		// does nothing
@@ -46,7 +41,6 @@ public class StubStockExchange implements StockExchange {
 
 	@Override
 	public List<TickEvent<Trade>> getTradeHistory(Stock stock) {
-		// does nothing - no trades executed.
 		return null;
 	}
 
@@ -58,6 +52,26 @@ public class StubStockExchange implements StockExchange {
 	@Override
 	public Double getBestBid(Stock stock) {
 		return 5.0;
+	}
+
+	@Override
+	public List<Trader> getRegisteredTraders() {
+		return null;
+	}
+
+	@Override
+	public void registerTrader(Trader trader) {
+
+	}
+
+	@Override
+	public void removeTrader(Trader trader) {
+
+	}
+
+	@Override
+	public void notifyTraders() {
+
 	}
 
 }

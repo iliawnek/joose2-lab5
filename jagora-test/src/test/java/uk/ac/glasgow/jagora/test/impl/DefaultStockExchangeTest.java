@@ -10,11 +10,15 @@ import org.junit.Before;
 
 import uk.ac.glasgow.jagora.BuyOrder;
 import uk.ac.glasgow.jagora.SellOrder;
+import uk.ac.glasgow.jagora.TickEvent;
+import uk.ac.glasgow.jagora.Trade;
 import uk.ac.glasgow.jagora.impl.DefaultStockExchange;
 import uk.ac.glasgow.jagora.impl.DefaultWorld;
 import uk.ac.glasgow.jagora.test.StockExchangeTest;
 import uk.ac.glasgow.jagora.impl.LimitBuyOrder;
 import uk.ac.glasgow.jagora.impl.LimitSellOrder;
+
+import java.util.ArrayList;
 
 public class DefaultStockExchangeTest extends StockExchangeTest {
 
@@ -34,7 +38,5 @@ public class DefaultStockExchangeTest extends StockExchangeTest {
 				new LimitSellOrder(seller, lemons, 1, 0.5),
 				new LimitSellOrder(seller, lemons, 1, 0.5),
 				new LimitSellOrder(seller, lemons, 1, 2.5)}));
-
 	}
-
 }

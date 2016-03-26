@@ -6,6 +6,7 @@ import org.junit.Before;
 
 import uk.ac.glasgow.jagora.impl.DefaultTrader;
 import uk.ac.glasgow.jagora.test.TraderTest;
+import uk.ac.glasgow.jagora.test.stub.StubStockExchange;
 
 public class DefaultTraderTest extends TraderTest {
 			
@@ -18,5 +19,6 @@ public class DefaultTraderTest extends TraderTest {
 		name = "default";
 		
 		this.trader = new DefaultTrader(name, cash, stock, quantity);
+		this.stockExchange = new StubStockExchange();
 	}
 }

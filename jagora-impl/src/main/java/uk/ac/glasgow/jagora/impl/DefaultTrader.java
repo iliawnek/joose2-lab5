@@ -1,10 +1,13 @@
 package uk.ac.glasgow.jagora.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import uk.ac.glasgow.jagora.Stock;
 import uk.ac.glasgow.jagora.StockExchange;
+import uk.ac.glasgow.jagora.TickEvent;
+import uk.ac.glasgow.jagora.Trade;
 
 /**
  * Implements the behaviour of a passive default trader who never makes bids or
@@ -14,7 +17,7 @@ import uk.ac.glasgow.jagora.StockExchange;
  *
  */
 public class DefaultTrader extends AbstractTrader {
-	
+
 	public DefaultTrader(String name, Double cash, Stock stock, Integer quantity) {
 		super(name, cash, createInventory(stock, quantity));
 	}
