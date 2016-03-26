@@ -1,2 +1,10 @@
-- Modified Trader and StockExchange interfaces to include appropriate observer design pattern methods.
-- Implemented test cases to test the new interface methods.
+- Added observable methods to StockExchange interface.
+- Added observer methods to Trader interface.
+- Wrote test methods in StockExchangeTest to test newly added methods.
+- Wrote test methods in TraderTest to test newly added methods.
+- Initialised StubStockExchange within DefaultTraderTest for testNotify().
+- Initialised StubStockExchange within RandomTraderTest for testNotify().
+- Implemented new methods in StubStockExchange.
+- Implemented new methods in StubTrader.
+- Implemented new methods in DefaultStockExchange.
+- Implemented new methods in AbstractTrader.
