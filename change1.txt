@@ -1,3 +1,15 @@
+Explanation:
+
+Design pattern 1 is the observer design pattern.
+The subject is the stock exchange.
+The observers are the traders.
+When the stock exchange notifies the traders registered to it,
+it sends out its trade history to the traders.
+From that point, each trader can use the trade history data any way they want,
+like using it to calculate average price for example.
+
+Change list:
+
 - Added observable methods to StockExchange interface.
 - Added observer methods to Trader interface.
 - Wrote test methods in StockExchangeTest to test newly added methods.
